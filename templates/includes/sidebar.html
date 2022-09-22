@@ -1,0 +1,63 @@
+{% load static %}
+    <script src="{%  static 'js/sidebars.js' %}"></script>
+    <link rel="stylesheet" href="{%  static 'css/sidebars.css' %}">
+
+
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;min-height: 100vh; position: fixed">
+    <a href="{% url 'home_app:home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+
+        <div class="text-center">
+{#            <img src="{% static 'img/Logo-myra-web.png' %}" title="Logo-myra-web" alt="Logo-myra-web" width="50%" class="mx-auto">#}
+        </div>
+    </a>
+    
+    <hr>
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <a href="{% url 'home_app:home' %}" class="btn btn-toggle align-items-center rounded text-white">Home</a>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#applicants-collapse" aria-expanded="false" >
+                Sesiones
+            </button>
+            <div class="collapse" id="applicants-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{% url 'sessions_app:all_sessions' %}" class="link-light rounded">Ver Sesiones</a></li>
+                    <li><a href="{% url 'sessions_app:add_sessions' %}" class="link-light rounded">Nueva Sesión</a></li>
+                    <li><a href="{% url 'sessions_app:add_time_sessions' %}" class="link-light rounded">Nueva Sesión de tiempo</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#opportunities-collapse" aria-expanded="false">
+                Máquinas
+            </button>
+            <div class="collapse" id="opportunities-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{% url 'machines_app:all_machines' %}" class="link-light rounded">Ver Máquinas</a></li>
+                    <li><a href="{% url 'machines_app:add_machine' %}" class="link-light rounded">Añadir Máquina</a></li>
+                </ul>
+            </div>
+        </li>
+{#            <li class="border-top my-3"></li>#}
+{#            <li class="mb-1">#}
+{#                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">#}
+{#                    Account#}
+{#                </button>#}
+{#                <div class="collapse" id="account-collapse">#}
+{#                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">#}
+{#                        <li><a href="#" class="link-light rounded">New...</a></li>#}
+{#                        <li><a href="#" class="link-light rounded">Profile</a></li>#}
+{#                        <li><a href="#" class="link-light rounded">Settings</a></li>#}
+{#                        <li><a href="#" class="link-light rounded">Sign out</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </li>#}
+
+    </ul>
+</div>
+
+
+
+

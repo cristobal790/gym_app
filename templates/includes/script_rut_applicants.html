@@ -1,0 +1,19 @@
+<script>
+    $('#id_run').rut({
+       fn_validado:function (a) {
+
+         var run= $('#id_run').val();  // get the selected country ID from the HTML input
+           console.log(run)
+          $.ajax({                       // initialize an AJAX request
+            url: '{% url 'applicants_app:check_rut_applicant' %}',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+              'rut': run       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+              console.log(data);  // replace the contents of the city input with the data that came from the server
+            }
+          });
+
+        }
+    });
+</script>

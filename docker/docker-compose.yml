@@ -1,0 +1,90 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=$$DATABASE_USERNAME
+      - POSTGRES_PASSWORD=$$DATABASE_PASSWORD
+      - POSTGRES_DB=$$DATABASE_NAME
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - env
+
+
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+#      PGADMIN_DEFAULT_PASSWORD: "admin"
+#    ports:
+#      - "3000:80"
+#    depends_on:
+#      - postgres
+
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ../static:/static
+    ports:
+      - "80:80"
+    depends_on:
+      - django_app
+
+  django_app:
+    volumes:
+      - ../../gym_project:/app
+#      - ./Plataforma_myra:/app/Plataforma_myra
+      - ../static:/static
+#      - ./cloudflared:/app2/Plataforma_myra
+    container_name: django_app
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - env
+    command:
+      - "pwd"
+    depends_on:
+      - postgres
+
+
+
+  cloudflared:
+    container_name: 'cloudflare' # name obtained from environment variable
+    hostname: 'docker-cloudflare' # name obtained from environment variable
+    image: 'cloudflare/cloudflared' # version obtained from environment variable
+    network_mode: host # I use host networking because I want to tunnel a specific port opened on my host system
+    volumes:
+      - './cloudflared/:/etc/cloudflared/'
+#    command: 'tunnel --config /etc/cloudflared/config.yml run'
+    command: 'tunnel --url 127.0.0.1:80'
+    user: root
+    restart: 'on-failure'
+    depends_on:
+      - nginx
+
+#  certbot:
+#    image: certbot/certbot
+#    container_name: certbot
+#    volumes:
+#      - ./certbot/conf:/etc/letsencrypt
+#      - ./certbot/www:/var/www/certbot
+#    command: certonly --webroot -w /var/www/certbot --force-renewal --email cristobaldominguez09@gmail.com -d ec2-18-228-166-63.sa-east-1.compute.amazonaws.com --agree-tos
+##    command:
+##      - "certonly --webroot -w /var/www/certbot --force-renewal --email ${DJANGO_SUPERUSER_EMAIL} -d ${DOMAIN} --agree-tos"
+#
+
+volumes:
+  postgres_data:
+  static:
+

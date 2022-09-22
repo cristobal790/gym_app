@@ -1,0 +1,35 @@
+{% extends 'base_template.html' %}
+
+{% block fillable %}
+    <h1>Lista de máquinas</h1>
+
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">REPS/TIEMPO</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for o in object_list %}
+            {{ o.id_for_label }}
+             <tr>
+                <td>{{ o.id }}</td>
+                <td>{{ o.name }}</td>
+                <td>{{ o.get_type_display }}</td>
+                <td>
+                    <div>
+                        <a type="button" class="btn btn-warning" href="{% url 'machines_app:edit_machine' o.id %}">Editar</a>
+                    </div>
+                </td>
+             </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% include 'includes/pagination.html' %}
+{% endblock fillable %}

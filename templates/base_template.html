@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+
+{% block body %}
+    <div class="d-flex">
+        {% include 'includes/sidebar.html' %}
+        <div class="content w-100" style="margin-left: 280px">
+            {% include 'includes/nav_bar.html' %}
+                <section class="p-3" >
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% block fillable %}
+
+                                {% endblock fillable %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </div>
+    </div>
+{% endblock body %}

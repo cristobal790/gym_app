@@ -1,0 +1,60 @@
+{% extends 'base_template.html' %}
+{% block title %}
+Añadir Máquina
+{% endblock %}
+
+{% block fillable %}
+
+<h1>Añadir Máquina</h1>
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}
+<form class="needs-validation" novalidate method="POST">{% csrf_token %}
+    <div class="row mb-3">
+        <div class="col-6">
+            <label for="id_name" class="form-label">Nombre:</label>
+            {{ form.name }}
+        </div>
+
+        <div class="col-3 has-error">
+            <label for="id_type" class="form-label">REPS/TIME</label>
+            {{ form.type }}
+        </div>
+        <div class="col-3 has-error">
+            <label for="id_brand" class="form-label">Marca</label>
+            {{ form.brand }}
+        </div>
+    </div>
+
+
+    <h3>Músculos</h3>
+
+    <div class="mb-3" id="id_skills">
+        {% for muscle in form.muscle %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="{{ muscle.data.name }}" value="{{ muscle.data.value }}" id="{{ muscle.id_for_label }}">
+                <label class="form-check-label" for="{{ muscle.id_for_label }}">
+                    {{ muscle.choice_label }}
+                </label>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Añadir Máquina</button>
+</form>
+
+
+
+
+{% endblock %}
+
+
+

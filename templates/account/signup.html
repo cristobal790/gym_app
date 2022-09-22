@@ -1,0 +1,45 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+
+{{ form.non_field_errors }}
+
+  <div class="form-floating mb-3">
+
+    <input type="{{ form.email.widget_type }}" name="{{ form.email.html_name }}" autocomplete="email" required="" id="{{ form.email.id_for_label }}" class="form-control" value="{% if form.email.value %}{{form.email.value}}{% endif %}">
+    <label for="{{ form.email.id_for_label }}">Correo electrónico:</label>
+      {{ form.errors.email }}
+  </div>
+  <div class="form-floating mb-3">
+
+    <input type="{{ form.password1.widget_type }}" name="{{ form.password1.html_name }}"  autocomplete="new-password" required="" id="{{ form.password1.id_for_label }}" aria-autocomplete="list" class="form-control" value="{% if form.password1.value %}{{form.password1.value}}{% endif %}">
+    <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+       {{ form.errors.password1 }}
+  </div>
+  <div class="form-floating mb-3">
+
+    <input type="{{ form.password2.widget_type }}" name="{{ form.password2.html_name }}" autocomplete="new-password" required="" id="{{ form.password2.id_for_label }}" class="form-control">
+    <label for="{{ form.password2.id_for_label }}">Contraseña (de nuevo):</label>
+      {{ form.errors.password2 }}
+  </div>
+
+
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+<hr class="my-4">
+
+{% endblock %}

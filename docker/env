@@ -1,0 +1,17 @@
+DJANGO_SECRET_KEY=django-insecure-1-glk9do3w53*fm*&=e12n2nx18u=zmzhlpr@f!2=)9xefmg^i
+DEBUG=True
+DJANGO_ALLOWED_HOSTS=0.0.0.0,localhost,127.0.0.1,127.0.0.1:8000,ec2-18-228-166-63.sa-east-1.compute.amazonaws.com,django_app,django_app:8000,django,django:8000,https://*.ngrok.io,*.ngrok.io,https://*.trycloudflare.com,.trycloudflare.com,http://*.trycloudflare.com
+DATABASE_ENGINE=postgresql_psycopg2
+DATABASE_NAME=gym_db
+DATABASE_USERNAME=gym_app
+DATABASE_PASSWORD=pass
+DATABASE_HOST=postgres
+DATABASE_PORT=5432
+DJANGO_LOGLEVEL=info
+DJANGO_SUPERUSER_PASSWORD=admin
+DJANGO_SUPERUSER_EMAIL=cristobaldominguez09@gmail.com
+DJANGO_SUPERUSER_USERNAME=admin
+POSTGRES_USER=myra_rec_db
+POSTGRES_PASSWORD=pass
+POSTGRES_DB=myra
+DOMAIN=127.0.0.1

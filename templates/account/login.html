@@ -1,0 +1,72 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+<hr class="my-4">
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+  <div class="form-floating mb-3">
+
+      <input type="email" name="{{ form.login.html_name }}" placeholder="Correo electrónico" autocomplete="email" required="required" id="{{ form.login.auto_id }}" class="form-control" value="{% if form.login.value %}{{form.login.value}}{% endif %}">
+      <label for={{ form.login.id_for_label }}>Email</label>
+  </div>
+
+  <div class="form-floating mb-3">
+
+
+    <input type="{{ form.password.widget_type }}" name="{{ form.password.html_name }}" placeholder="Contraseña" autocomplete="email" required="required" id="{{ form.password.auto_id }}" class="form-control">
+      <label for={{ form.password.id_for_label }}>Contraseña</label>
+  </div>
+  <div class="form-check mb-3">
+
+    <input class="form-check-input" type="{{ form.remember.widget_type }}" value="" id="{{ form.remember.id_for_label }}">
+    <label class="form-check-label" for="{{ form.remember.id_for_label }}">
+        Recordar contraseña
+    </label>
+  </div>
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+
+<button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">{% trans "Sign In" %}</button>
+<hr class="my-4">
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+
+
+</form>
+
+
+{% endblock %}

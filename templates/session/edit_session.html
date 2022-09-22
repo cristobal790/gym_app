@@ -1,0 +1,37 @@
+{% extends 'base_template.html' %}
+{% block title %}
+Editar Sesión
+{% endblock %}
+
+{% block fillable %}
+
+<h1>Editar Sesión</h1>
+{% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+{% endif %}
+<form class="needs-validation" novalidate method="POST">{% csrf_token %}
+    <div class="row mb-3">
+        <div class="col-3">
+            <label for="id_machine" class="form-label">Maquina:</label>
+            {{ form.machine }}
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <button type="submit" class="btn btn-primary">Guardar Sesión</button>
+</form>
+
+
+
+
+{% endblock %}
+
+
