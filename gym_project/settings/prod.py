@@ -4,7 +4,8 @@ from .base import *
 DEBUG = os.getenv('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '0.0.0.0').split(',') + os.getenv('DOMAIN', '0.0.0.0').split(',')
-CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0', 'http://0.0.0.0:8000', 'http://127.0.0.1:8000', 'http://127.0.0.1']+ALLOWED_HOSTS
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS','http://0.0.0.0').split(',')
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -16,7 +17,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME', 'gym_db'),
         'USER': os.getenv('DATABASE_USERNAME', 'gym_app'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'pass'),
-        'HOST': os.getenv('DATABASE_HOST', 'postgres'),
+        'HOST': os.getenv('DATABASE_HOST', 'postgres_gym_app'),
         'PORT': os.getenv('DATABASE_PORT', 5432),
         'OPTIONS': json.loads(
             os.getenv('DATABASE_OPTIONS', '{}')

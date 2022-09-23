@@ -22,14 +22,15 @@ RUN set -ex \
 
 #RUN rm /etc/nginx/conf.d/default.conf
 COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
-
+ADD entrypoint.sh /app/entrypoint.sh
 
 
 WORKDIR /app
+
 
 ENV VIRTUAL_ENV /env
 ENV PATH /env/bin:$PATH
 
 EXPOSE 8000
 
-ENTRYPOINT ["sh", "/app/docker/entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]

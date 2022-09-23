@@ -3,4 +3,4 @@
 echo "=====================psql.sh================================"
 echo "============================================="
 
-docker exec -it postgres psql -U docker -d gym_app_db
+docker exec -it postgres psql -U gym_app -d gym_db
