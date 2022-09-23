@@ -58,7 +58,7 @@ services:
 
 
   cloudflared:
-    container_name: 'cloudflare' # name obtained from environment variable
+    container_name: 'gym_app_cloudflare' # name obtained from environment variable
     hostname: 'docker-cloudflare' # name obtained from environment variable
     image: 'cloudflare/cloudflared' # version obtained from environment variable
     network_mode: host # I use host networking because I want to tunnel a specific port opened on my host system
