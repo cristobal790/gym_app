@@ -11,9 +11,9 @@ services:
       - ../.gitingnore:/app/.gitingnore
       - ../manage.py:/app/manage.py
     environment:
-      VIRTUAL_HOST: f.cdomingu.cl
+      VIRTUAL_HOST: gym_app.cdomingu.cl
       VIRTUAL_PORT: 8000
-      LETSENCRYPT_HOST: f.cdomingu.cl
+      LETSENCRYPT_HOST: gym_app.cdomingu.cl
       LETSENCRYPT_EMAIL: cristobaldominguez09@gmail.com
 
     container_name: django_gym_app
