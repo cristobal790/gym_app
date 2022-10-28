@@ -15,6 +15,7 @@ services:
       VIRTUAL_PORT: 8000
       LETSENCRYPT_HOST: gymapp.cdomingu.cl
       LETSENCRYPT_EMAIL: cristobaldominguez09@gmail.com
+      HTTPS_METHOD: noredirect
 
     container_name: django_gym_app
     build:
