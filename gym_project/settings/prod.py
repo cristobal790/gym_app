@@ -31,6 +31,6 @@ DATABASES = {
 STATIC_ROOT = '/app/static/'
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/gymapp'
 # STATICFILES_DIR = BASE_DIR.parent
 STATICFILES_DIRS = [Path(BASE_DIR.parent, 'assets')]
